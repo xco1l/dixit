@@ -5,6 +5,8 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { configModule } from './configure.root';
+import { TokenModule } from './token/token.module';
+import { MailModule } from './mail/mail.module';
 
 @Module({
   imports: [
@@ -15,6 +17,8 @@ import { configModule } from './configure.root';
       useNewUrlParser: true,
       useUnifiedTopology: true,
     }),
+    TokenModule,
+    MailModule,
   ],
   controllers: [AppController],
   providers: [AppService],
