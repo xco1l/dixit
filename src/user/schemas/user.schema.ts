@@ -18,4 +18,4 @@ export const UserSchema = new mongoose.Schema({
 } as { [key in keyof IUser]: SchemaTypeOpts<any> });
 
 UserSchema.index({ email: 1 }, { unique: true });
-UserSchema.index({ name: 1 });
+UserSchema.index({ name: 2 });
