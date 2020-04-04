@@ -32,6 +32,7 @@ export class AuthService {
   async signUp(createUserDto: CreateUserDto) {
     const user = await this.userService.create(createUserDto, [ROLE.user]);
     await this.sendConfirmation(user);
+    return user;
   }
 
   async signIn(email: string, password: string) {}

@@ -18,7 +18,9 @@ export class AuthController {
 
   @Post('/signup')
   async signUp(@Body(ValidationPipe) createUserDto: CreateUserDto) {
-    return this.authService.signUp(createUserDto);
+    const user = (await this.authService.signUp(createUserDto)).toObject();
+    delete user.password;
+    return user;
   }
 
   @Get('/confirm')
