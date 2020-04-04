@@ -3,7 +3,7 @@ import { GENDER } from '../enums/gender.enum';
 import { RANK } from '../enums/rank.enum';
 import { ROLE } from '../enums/role.enum';
 
-export interface IUser extends Document {
+export interface IUser {
   readonly email: string;
   readonly avatar?: string;
   readonly avatarId?: string;
@@ -13,4 +13,7 @@ export interface IUser extends Document {
   readonly games: number;
   readonly roles: ROLE[];
   readonly password: string;
+  confirmed: boolean;
 }
+
+export type IUserModel = IUser & Document;

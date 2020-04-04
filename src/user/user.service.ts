@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { IUser } from './interfaces/user.interface';
+import { IUserModel } from './interfaces/user.interface';
 import { CreateUserDto } from './dto/create-user.dto';
 import { ROLE } from './enums/role.enum';
 import bcrypt from 'bcrypt';
@@ -9,7 +9,9 @@ import _ from 'lodash';
 
 @Injectable()
 export class UserService {
-  constructor(@InjectModel('User') private readonly userModel: Model<IUser>) {
+  constructor(
+    @InjectModel('User') private readonly userModel: Model<IUserModel>,
+  ) {
     console.log(this.userModel);
   }
 
