@@ -14,6 +14,7 @@ export interface IUser {
   readonly roles: ROLE[];
   readonly password: string;
   confirmed: boolean;
+  accessToken?: string
 }
 
 export type IUserModel = IUser & Document;

@@ -1,3 +1,4 @@
+import { SignInDto } from './dto/signIn.dto';
 import {
   Controller,
   Post,
@@ -17,15 +18,20 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('/signup')
-  async signUp(@Body(ValidationPipe) createUserDto: CreateUserDto) {
+  async signUp(@Body(new ValidationPipe()) createUserDto: CreateUserDto) {
     const user = (await this.authService.signUp(createUserDto)).toObject();
     delete user.password;
     return user;
   }
 
   @Get('/confirm')
-  async confirm(@Query(ValidationPipe) query: ConfirmAccountDto) {
+  async confirm(@Query(new ValidationPipe()) query: ConfirmAccountDto) {
     await this.authService.confirm(query.token);
     return true;
+  }
+
+  @Post('/signin')
+  async signIn(@Body(new ValidationPipe()) signInDto: SignInDto) {
+    return await this.authService.signIn(signInDto)
   }
 }
