@@ -3,7 +3,7 @@ import { PassportStrategy } from '@nestjs/passport';
 import { Strategy, ExtractJwt } from 'passport-jwt';
 import { ConfigService } from '@nestjs/config';
 import { TokenService } from 'src/token/token.service';
-import { IUser } from 'src/user/interfaces/user.interface';
+import { IUserModel } from 'src/user/interfaces/user.interface';
 import { Request } from 'express';
 
 @Injectable()
@@ -19,7 +19,7 @@ export class JWTStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  async validate(req: Request, user: Partial<IUser>) {
+  async validate(req: Request, user: Partial<IUserModel>) {
     const token = req.headers.authorization.slice(7);
     const isExist = await this.tokenService.isExists(user._id, token);
     if (isExist) {
