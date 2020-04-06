@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { configModule } from './configure.root';
 import { TokenModule } from './token/token.module';
 import { MailModule } from './mail/mail.module';
+import { EventsModule } from './events/events.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { MailModule } from './mail/mail.module';
     }),
     TokenModule,
     MailModule,
+    EventsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
