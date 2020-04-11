@@ -8,6 +8,7 @@ import { configModule } from './configure.root';
 import { TokenModule } from './token/token.module';
 import { MailModule } from './mail/mail.module';
 import { EventsModule } from './events/events.module';
+import { CardsModule } from './cards/cards.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { EventsModule } from './events/events.module';
     TokenModule,
     MailModule,
     EventsModule,
+    CardsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
