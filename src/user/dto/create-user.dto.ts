@@ -32,5 +32,7 @@ export class CreateUserDto implements IUser {
   @IsNotEmpty()
   readonly password: string;
 
+  readonly _id: string;
+
   confirmed: boolean;
 }
