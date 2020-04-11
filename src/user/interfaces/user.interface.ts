@@ -4,6 +4,7 @@ import { RANK } from '../enums/rank.enum';
 import { ROLE } from '../enums/role.enum';
 
 export interface IUser {
+  readonly _id: string;
   readonly email: string;
   readonly avatar?: string;
   readonly avatarId?: string;
@@ -14,7 +15,7 @@ export interface IUser {
   readonly roles: ROLE[];
   readonly password: string;
   confirmed: boolean;
-  accessToken?: string
+  accessToken?: string;
 }
 
 export type IUserModel = IUser & Document;
