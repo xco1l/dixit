@@ -40,32 +40,33 @@ export class AuthService {
     return user;
   }
 
-  async signIn({email, password}: SignInDto) {
-    const user = await this.userService.findByEmail(email)
-    if (!user) throw new BadRequestException('Invalid email or password')
+  async signIn({ email, password }: SignInDto) {
+    const user = await this.userService.findByEmail(email);
+    if (!user) throw new BadRequestException('Invalid email or password');
 
-    const isPasswordCorrect = await compare(password, user.password)
-    if (!isPasswordCorrect) throw new BadRequestException('Invalid email or password ')
+    const isPasswordCorrect = await compare(password, user.password);
+    if (!isPasswordCorrect)
+      throw new BadRequestException('Invalid email or password ');
 
     const tokenPayload: ITokenPayload = {
       _id: user._id,
       confirmed: user.confirmed,
-      roles: user.roles
-    }
+      roles: user.roles,
+    };
 
-    const token = await this.generateToken(tokenPayload)
-    const expireAt = addDays(new Date(), 1).toISOString()
+    const token = await this.generateToken(tokenPayload);
+    const expireAt = addDays(new Date(), 1).toISOString();
 
     await this.saveToken({
       token,
       expireAt,
-      uId: user._id
-    })
+      uId: user._id,
+    });
 
-    const userWithToken = user.toObject() as IUser
-    userWithToken.accessToken = token
+    const userWithToken = user.toObject() as IUser;
+    userWithToken.accessToken = token;
 
-    return userWithToken
+    return userWithToken;
   }
 
   async confirm(token: string) {
@@ -103,11 +104,11 @@ export class AuthService {
       from: this.configService.get<string>('MAIL_USER'),
       to: user.email,
       subject: `Verify your accout.`,
-      html: `
+      html: `<div>
       <h3> Hello ${user.name}!</h3>
-      <To confirm your account click on the link below.
+      <p>To confirm your account click on the link below.</p>
       <a href=${confirmLink}>Click here</a>
-      `,
+      </div>`,
     });
   }
 

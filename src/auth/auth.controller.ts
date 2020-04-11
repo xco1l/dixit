@@ -32,6 +32,6 @@ export class AuthController {
 
   @Post('/signin')
   async signIn(@Body(new ValidationPipe()) signInDto: SignInDto) {
-    return await this.authService.signIn(signInDto)
+    return await this.authService.signIn(signInDto);
   }
 }

@@ -5,13 +5,10 @@ import { IUser } from '../interfaces/user.interface';
 import { ApiProperty } from '@nestjs/swagger';
 import { IsEmail, IsString, IsNotEmpty } from 'class-validator';
 
-export class CreateUserDto implements IUser {
+export class CreateUserDto implements Partial<IUser> {
   @ApiProperty()
   @IsEmail()
   readonly email: string;
-
-  readonly avatar?: string;
-  readonly avatarId?: string;
 
   @ApiProperty()
   @IsString()
@@ -23,16 +20,8 @@ export class CreateUserDto implements IUser {
   @IsNotEmpty()
   readonly gender: GENDER;
 
-  readonly rank: RANK;
-  readonly games: number;
-  readonly roles: ROLE[];
-
   @ApiProperty()
   @IsString()
   @IsNotEmpty()
   readonly password: string;
-
-  readonly _id: string;
-
-  confirmed: boolean;
 }
